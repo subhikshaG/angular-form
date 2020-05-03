@@ -53,18 +53,6 @@ export class FormComponent implements OnInit {
     this.total[this.items.length] = 0;
   }
 
-  /**when a product code is selected, the formarray is prepopulated */
-  // addProduct(product: Product): void {
-  //   this.items = this.orderForm.get('items') as FormArray;
-  //   const array = this.orderForm.get('items') as FormArray;
-  //   this.items.at(array.length - 1).patchValue({
-  //     id: product.productId,
-  //     code: product.productCode,
-  //     name: product.productName,
-  //     price: product.productRatePerQuantity
-  //   });
-  //   this.total[array.length - 1] = 0;
-  // }
 
  
 
