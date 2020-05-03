@@ -1,0 +1,27 @@
+<h1>Model-based Form Example:</h1>
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+    <p>
+        <label>First Name:</label>
+        <input type="text" #first formControlName="firstName">
+    </p>
+    <p>
+        <label>Password:</label>
+        <input type="password" formControlName="password">
+    </p>
+    <p>
+        <button type="submit" [disabled]="!form.valid">Submit</button>
+        <br><br>
+        <button type="button" (click)="reset()">Cancel</button>
+        <!--Try specifying the type of the reset button. 
+Otherwise, it may be defaulting to a submit button as well.-->
+    </p>
+</form>
+<div >
+    <pre >{{ form.value | json }}</pre>
+  </div>
+
+  <p>The hero's birthday is {{ birthday | date:formatss }}</p>
+  <button (click)="toggleFormat()">Toggle Format</button>
+
+
+  <p>heree {{ form.value.firstName | reverseStr:"Ms":"Princess" }}</p>  <!--first is the value to be passed, after reverseStr is optional-->

@@ -1,0 +1,4 @@
+/**change cursor to pointer at product code */
+.code{
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+
+
+<div class="container p-3 bg-white">
+    <div class="alert alert-success m-3" *ngIf="success">Thank you for shopping.</div>
+    <div class="alert alert-danger m-3" *ngIf="failure">Try Again. Failure.</div>
+    <div class="alert alert-warning m-3" *ngIf="wrongNumber">Try Again. Please enter phone number of existing user.
+    </div>
+    <div class="m-2">
+        <button class="btn btn-info" id="product-button-blue" (click)="addItem()">Add Item</button>
+    </div>
+    <!--Bill form-->
+    <form [formGroup]="orderForm" class="text-center" (submit)="generateBill(orderForm)">
+        <div class="row">
+            <div class="col-12 text-right">
+                Contact Number : <input formControlName="customerNumber" placeholder="Enter number">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col-2">Code</div>
+            <div class="col-2">Name</div>
+            <div class="col-2">Quantity</div>
+            <div class="col-2">Price</div>
+            <div class="col-2">Total</div>
+            <div class="col-2"></div>
+        </div>
+        <div formArrayName="items" *ngFor="let item of orderForm.get('items').controls; let i = index;">
+            <div [formGroupName]="i">
+
+                <div class="form-row">
+                    <div class="col-2">
+                        <input formControlName="code" placeholder="Item code">
+                    </div>
+                    <div class="col-2">
+                        <input formControlName="name" placeholder="Item name">
+                    </div>
+                    <div class="col-2">
+                        <input formControlName="quantity" placeholder="Item quantity">
+                    </div>
+                    <div class="col-2">
+                        <input formControlName="price" placeholder="Item price" (keyup.enter)="hello(i)"> &nbsp;
+                    </div>
+                    <div class="col-2">
+                        <label>{{total[i]  | currency: 'INR'}}</label>&nbsp;
+                    </div>
+                    <div class="col-2">
+                        <input type="button" class="btn btn-info" id="product-button-blue"
+                            (click)="getCodeAndPrice(i,orderForm)" value="ok">
+                        <i (click)="removeProduct(i)" class="material-icons trash-can pr-2 text-dark"
+                            style="vertical-align:middle">delete_forever</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <input type="button" class="btn btn-info mt-3" id="product-button-blue" (click)="getTotal()" value="total"><span
+            class="font-weight-bold text-success p-3 mt-2">{{sum  | currency: 'INR'}}</span>
+        <div>
+            <button type="submit" class="btn btn-info mt-3" id="product-button-blue">Generat Bill </button>
+        </div>
+    </form>
+</div>
